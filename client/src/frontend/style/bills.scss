@@ -1,0 +1,247 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+.app-bills {
+  display: none;
+  min-height: 100vh;
+
+  @include main-header;
+
+  &-menu {
+    margin-bottom: 50px;
+
+    &__container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+      padding: 0 50px;
+    }
+
+    &__wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    &__title {
+      @include main-title;
+      max-width: 80vw;
+      margin-right: 35px;
+      word-wrap: break-word;
+    }
+
+    &__select {
+      @include main-select;
+      position: relative;
+      min-width: 300px;
+      border-color: $main-color;
+      color: $gray-color;
+    }
+
+    &__select--active {
+      background-image: url("../assets/Select-arrow-active.svg");
+    }
+
+    &__text {
+      word-wrap: break-word;
+    }
+
+    &__list {
+      position: absolute;
+      bottom: -155px;
+      left: 0;
+      display: none;
+      min-width: 300px;
+      padding: 10px 0;
+      border-radius: 7px;
+      background-color: $white-color;
+      filter: drop-shadow(0px 5px 20px rgba(0, 0, 0, 0.25));
+    }
+
+    &__list--visible {
+      display: block;
+    }
+
+    &__item {
+      @include main-placeholder;
+      padding: 10px 15px;
+      color: $gray-color;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $sky-color;
+      }
+
+      &:active {
+        color: $white-color;
+        background-color: $active-button-color;
+      }
+
+      &--selected {
+        background: transparent url("../assets/Check.svg") no-repeat center right 10px;
+      }
+    }
+
+    &__button {
+      @include main-button;
+      padding-left: 50px;
+      background: $main-color url("../assets/Plus.svg") no-repeat 25px center;
+    }
+  }
+
+  &-cards {
+    &__container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 50px 70px;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 50px;
+    }
+  }
+
+  &-card {
+    display: inline-block;
+    min-width: 370px;
+    padding: 22px;
+    border-radius: 9px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3s ease-in-out;
+
+    &:hover {
+      box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    &__title {
+      @include main-card-title;
+      margin-bottom: 10px;
+    }
+
+    &__bill {
+      @include main-card-bill;
+      margin-bottom: 10px;
+    }
+
+    &__bottom {
+      display: flex;
+      align-items: flex-end;
+    }
+
+    &__transaction {
+      margin-right: 60px;
+    }
+
+    &__description {
+      @include main-card-description;
+    }
+    &__date {
+      @include main-card-date;
+    }
+
+    &__button {
+      @include main-button;
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .app-bills {
+    &-cards {
+      &__container {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 50px 40px;
+      }
+    }
+
+    &-card {
+      min-width: 280px;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-bills {
+    &-menu {
+      &__container {
+        align-items: flex-end;
+      }
+
+      &__wrapper {
+        flex-direction: column;
+      }
+
+      &__title {
+        margin-bottom: 25px;
+      }
+    }
+
+    &-cards {
+      &__container {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px 40px;
+      }
+    }
+
+    &-card {
+      min-width: 250px;
+      margin-right: 25px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .app-bills {
+    &-menu {
+      &__container {
+        flex-direction: column;
+        padding: 0 25px;
+      }
+
+      &__wrapper {
+        flex-direction: column;
+        margin-bottom: 25px;
+      }
+
+      &__select {
+        min-width: 150px;
+        max-width: 200px;
+      }
+
+      &__list {
+        bottom: -180px;
+        min-width: 150px;
+      }
+
+      &__title {
+        margin-right: 0;
+        margin-bottom: 25px;
+      }
+
+      &__button {
+        font-size: 14px;
+      }
+    }
+
+    &-cards {
+      &__container {
+        grid-template-columns: 1fr;
+        gap: 20px 40px;
+        padding: 0 15px;
+      }
+    }
+
+    &-card {
+      min-width: 200px;
+      margin-bottom: 25px;
+
+      &__bottom {
+        flex-wrap: wrap;
+      }
+
+      &__transaction {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

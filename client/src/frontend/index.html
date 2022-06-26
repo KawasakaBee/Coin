@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coin.</title>
+  <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript" defer></script>
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<ваш API-ключ>" type="text/javascript"
+    defer></script>
+</head>
+
+<body class="body">
+  <main class="app-main">
+    <section class="app-entry">
+      <div class="app-entry__header">
+        <div class="app-entry__container">
+          <a class="app-entry__title link" href="./main.html">Coin.</a>
+        </div>
+      </div>
+      <div class="container">
+        <form class="entry-form" action="./main.html" method="POST">
+          <h2 class="entry-form__title title">Вход в аккаунт</h2>
+          <div class="entry-form__wrapper">
+            <label class="entry-form__label" for="login">Логин</label>
+            <input class="entry-form__input" id="login" type="text" placeholder="Введите Логин">
+          </div>
+          <div class="entry-form__wrapper">
+            <label class="entry-form__label" for="password">Пароль</label>
+            <input class="entry-form__input" id="password" type="text" placeholder="Введите Пароль">
+          </div>
+          <div class="entry-form__button-wrapper">
+            <button class="entry-form__button" type="button">Войти</button>
+            <p class="entry-form-error text">Неправильный логин или пароль</p>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="app-bills">
+      <div class="app-header">
+        <div class="app-header__container">
+          <a class="app-header__title link" href="./main.html">Coin.</a>
+          <div class="app-header-burger" id="bills-burger"></div>
+          <ul class="app-header__list list" id="bills-burger-menu">
+            <li class="app-header__item"><button class="app-header__crumb" id="atm-bills">Банкоматы</button></li>
+            <li class="app-header__item "><button class="app-header__crumb app-header__crumb--active">Счета</button>
+            </li>
+            <li class="app-header__item"><button class="app-header__crumb" id="currency-bills">Валюта</button></li>
+            <li class="app-header__item"><button class="app-header__crumb" id="exit-bills">Выйти</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="app-bills-menu">
+        <div class="app-bills-menu__container">
+          <div class="app-bills-menu__wrapper">
+            <h2 class="app-bills-menu__title">Ваши счета</h2>
+            <div class="app-bills-menu__select">
+              <p class="app-bills-menu__text text">Сортировка</p>
+              <ul class="app-bills-menu__list list">
+                <li class="app-bills-menu__item" id="number-sort">По номеру</li>
+                <li class="app-bills-menu__item" id="balance-sort">По балансу</li>
+                <li class="app-bills-menu__item" id="transaction-sort">По последней транзакции</li>
+              </ul>
+            </div>
+          </div>
+          <button class="app-bills-menu__button">Создать новый счёт</button>
+        </div>
+      </div>
+      <div class="app-bills-cards">
+        <div class="app-bills-cards__container">
+          <div class="loader" id="card-loader">Loading...</div>
+        </div>
+      </div>
+    </section>
+    <section class="app-bill">
+      <div class="app-header">
+        <div class="app-header__container">
+          <a class="app-header__title link" href="./main.html">Coin.</a>
+          <div class="app-header-burger" id="bill-burger"></div>
+          <ul class="app-header__list list" id="bill-burger-menu">
+            <li class="app-header__item"><button class="app-header__crumb" id="atm-bill">Банкоматы</button></li>
+            <li class="app-header__item"><button class="app-header__crumb app-header__crumb--active"
+                id="bills-bill">Счета</button></li>
+            <li class="app-header__item"><button class="app-header__crumb" id="currency-bill">Валюта</button></li>
+            <li class="app-header__item"><button class="app-header__crumb" id="exit-bill">Выйти</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="app-bill__container">
+        <div class="app-bill__head">
+          <h1 class="app-bill__title title">Просмотр счёта </h1>
+          <button class="app-bill__button">Вернуться назад</button>
+        </div>
+        <div class="app-bill__bot">
+          <h2 class="app-bill__number title"></h2>
+          <p class="app-bill__balance">Баланс <span class="app-bill__sum"></span></p>
+        </div>
+        <div class="app-bill__wrapper">
+          <form class="app-bill-transfer" action="./main.html" method="POST">
+            <h3 class="app-bill-transfer__title title">Новый перевод</h3>
+            <div class="app-bill-transfer__lables"></div>
+            <div class="app-bill-transfer__wrapper" id="blll-number-wrapper"> <label class="app-bill-transfer__label"
+                for="bill-number">Номер
+                счёта получателя</label>
+              <div id="card-type"></div>
+              <input class="app-bill-transfer__input" id="bill-number" type="text" placeholder="Введите номер счёта">
+            </div>
+            <div class="app-bill-transfer__wrapper"> <label class="app-bill-transfer__label" for="transfer-count">Сумма
+                перевода</label>
+              <input class="app-bill-transfer__input" id="transfer-count" type="text"
+                placeholder="Введите сумму перевода">
+            </div>
+            <div class="app-bill-transfer__box">
+              <button class="app-bill-transfer__button" type="button">Отправить</button>
+            </div>
+          </form>
+          <div class="app-bill-chart">
+            <h3 class="app-bill-chart__title title">Динамика баланса</h3>
+            <div class="loader" id="chibi-chard-loader">Loading...</div>
+            <div id="chart_div"></div>
+          </div>
+        </div>
+        <div class="app-bill-table">
+          <h3 class="app-bill-table__title title">История переводов</h3>
+          <table class="app-bill-table__table">
+            <thead class="app-bill-table__head">
+              <td class="app-bill-table__column-head">Счёт отправителя</td>
+              <td class="app-bill-table__column-head">Счёт получателя</td>
+              <td class="app-bill-table__column-head">Сумма</td>
+              <td class="app-bill-table__column-head">Дата</td>
+            </thead>
+            <tbody class="app-bill-table__body"></tbody>
+          </table>
+          <div class="loader" id="chibi-table-loader">Loading...</div>
+        </div>
+      </div>
+    </section>
+    <section class="app-info">
+      <div class="app-header">
+        <div class="app-header__container">
+          <a class="app-header__title link" href="./main.html">Coin.</a>
+          <div class="app-header-burger" id="info-burger"></div>
+          <ul class="app-header__list list" id="info-burger-menu">
+            <li class="app-header__item"><button class="app-header__crumb" id="atm-info">Банкоматы</button></li>
+            <li class="app-header__item"><button class="app-header__crumb app-header__crumb--active"
+                id="bills-info">Счета</button></li>
+            <li class="app-header__item"><button class="app-header__crumb" id="currency-info">Валюта</button></li>
+            <li class="app-header__item"><button class="app-header__crumb" id="exit-info">Выйти</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="app-info__container">
+        <div class="app-info__head">
+          <h1 class="app-info__title title">Просмотр счёта </h1>
+          <button class="app-info__button">Вернуться назад</button>
+        </div>
+        <div class="app-info__bot">
+          <h2 class="app-info__number title"></h2>
+          <p class="app-info__balance">Баланс <span class="app-info__sum"></span></p>
+        </div>
+        <div class="app-info-chart">
+          <h3 class="app-info-chart__title title">Динамика баланса</h3>
+          <div class="loader" id="chart-loader">Loading...</div>
+          <div id="chart__div"></div>
+        </div>
+        <div class="app-info-chart">
+          <h3 class="app-info-chart__title title">Соотношение входящих и исходящих транзакций</h3>
+          <div class="loader" id="double-chart-loader">Loading...</div>
+          <div id="chart__double"></div>
+        </div>
+        <div class="app-info-table">
+          <h3 class="app-info-table__title title">История переводов</h3>
+          <div class="app-info-table__button-wrapper">
+            <button class="app-info-table__button" id="back-button">Назад</button>
+            <p class="app-info-table__count"></p>
+            <button class="app-info-table__button" id="forward-button">Вперёд</button>
+          </div>
+          <table class="app-info-table__table">
+            <thead class="app-info-table__head">
+              <td class="app-info-table__column-head">Счёт отправителя</td>
+              <td class="app-info-table__column-head">Счёт получателя</td>
+              <td class="app-info-table__column-head">Сумма</td>
+              <td class="app-info-table__column-head">Дата</td>
+            </thead>
+            <tbody class="app-info-table__body"></tbody>
+          </table>
+          <div class="loader" id="table-loader">Loading...</div>
+        </div>
+      </div>
+    </section>
+    <section class="app-currency">
+      <div class="app-header">
+        <div class="app-header__container">
+          <a class="app-header__title link" href="./main.html">Coin.</a>
+          <div class="app-header-burger" id="currency-burger"></div>
+          <ul class="app-header__list list" id="currency-burger-menu">
+            <li class="app-header__item"><button class="app-header__crumb" id="atm-currency">Банкоматы</button></li>
+            <li class="app-header__item"><button class="app-header__crumb" id="bills-currency">Счета</button></li>
+            <li class="app-header__item"><button class="app-header__crumb app-header__crumb--active">Валюта</button>
+            </li>
+            <li class="app-header__item"><button class="app-header__crumb" id="exit-currency">Выйти</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="app-currency__container">
+        <h2 class="app-currency__title title">Валютный обмен</h2>
+        <div class="app-currency__box">
+          <div class="app-currency__left">
+            <div class="app-currency__own">
+              <h3 class="app-currency__subtitle title">Ваши валюты</h3>
+              <div class="loader" id="own-currency-loader">Loading...</div>
+            </div>
+            <form class="app-currency__transaction" action="./main.html" method="POST">
+              <h3 class="app-currency__subtitle title">Обмен валюты</h3>
+              <div class="app-currency__wrapper">
+                <div class="app-currency__form">
+                  <div class="app-currency__selectors">
+                    <p class="app-currency__text text">Из</p>
+                    <div class="app-currency__select" id="select-from">
+                      <p class="app-currency__selector-text text" id="text-from">Валюта</p>
+                      <ul class="app-currency__list list" id="list-from">
+                        <li class="app-currency__item">AUD</li>
+                        <li class="app-currency__item">BTC</li>
+                        <li class="app-currency__item">BYR</li>
+                        <li class="app-currency__item">CAD</li>
+                        <li class="app-currency__item">CHF</li>
+                        <li class="app-currency__item">CNH</li>
+                        <li class="app-currency__item">ETH</li>
+                        <li class="app-currency__item">EUR</li>
+                        <li class="app-currency__item">GBP</li>
+                        <li class="app-currency__item">HKD</li>
+                        <li class="app-currency__item">JPY</li>
+                        <li class="app-currency__item">NZD</li>
+                        <li class="app-currency__item">RUB</li>
+                        <li class="app-currency__item">UAH</li>
+                        <li class="app-currency__item">USD</li>
+                      </ul>
+                    </div>
+                    <p class="app-currency__text text">в</p>
+                    <div class="app-currency__select" id="select-to">
+                      <p class="app-currency__selector-text text" id="text-to">Валюта</p>
+                      <ul class="app-currency__list list" id="list-to">
+                        <li class="app-currency__item">AUD</li>
+                        <li class="app-currency__item">BTC</li>
+                        <li class="app-currency__item">BYR</li>
+                        <li class="app-currency__item">CAD</li>
+                        <li class="app-currency__item">CHF</li>
+                        <li class="app-currency__item">CNH</li>
+                        <li class="app-currency__item">ETH</li>
+                        <li class="app-currency__item">EUR</li>
+                        <li class="app-currency__item">GBP</li>
+                        <li class="app-currency__item">HKD</li>
+                        <li class="app-currency__item">JPY</li>
+                        <li class="app-currency__item">NZD</li>
+                        <li class="app-currency__item">RUB</li>
+                        <li class="app-currency__item">UAH</li>
+                        <li class="app-currency__item">USD</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="app-currency__values">
+                    <label class="app-currency__label" for="sum">Сумма</label>
+                    <input class="app-currency__input" id="sum" type="text" placeholder="Введите сумму">
+                  </div>
+                </div>
+                <button class="app-currency__button" type="button">Обменять</button>
+              </div>
+            </form>
+          </div>
+          <div class="app-currency__right">
+            <h2 class="app-currency__subtitle title">Изменение курсов в реальном времени</h2>
+            <div class="app-currency__real-time"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="app-atm">
+      <div class="app-header">
+        <div class="app-header__container">
+          <a class="app-header__title link" href="./main.html">Coin.</a>
+          <div class="app-header-burger" id="atm-burger"></div>
+          <ul class="app-header__list list" id="atm-burger-menu">
+            <li class="app-header__item"><button class="app-header__crumb app-header__crumb--active">Банкоматы</button>
+            </li>
+            <li class="app-header__item"><button class="app-header__crumb" id="bills-atm">Счета</button></li>
+            <li class="app-header__item"><button class="app-header__crumb" id="currency-atm">Валюта</button></li>
+            <li class="app-header__item"><button class="app-header__crumb" id="exit-atm">Выйти</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="app-currency__container">
+        <h2 class="app-currency__title title">Карта банкоматов</h2>
+        <div class="loader" id="map-loader">Loading...</div>
+        <div id="map"></div>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>

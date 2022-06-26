@@ -1,0 +1,219 @@
+@import "variables.scss";
+
+@mixin main-title {
+  margin: 0;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 40px;
+}
+
+@mixin main-text {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+@mixin main-label {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@mixin main-input {
+  min-width: 300px;
+  padding: 10px 10px 10px 16px;
+  border: 1px solid $main-border-color;
+  border-radius: 7px;
+  transition: border 0.3s ease-in-out, background 0.3s ease-in-out;
+
+  &:hover {
+    border-color: $main-color;
+    background-color: rgba(160, 195, 255, 0.05);
+  }
+
+  &:focus {
+    border-color: $main-color;
+    background-color: rgba(160, 195, 255, 0.05);
+  }
+}
+
+@mixin main-placeholder {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: $placeholder-color;
+}
+
+@mixin main-button {
+  @include main-label;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 7px;
+  color: $white-color;
+  background-color: $main-color;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+
+  &:hover {
+    background-color: $sky-color;
+  }
+
+  &:active {
+    background-color: $active-button-color;
+  }
+}
+
+@mixin main-select {
+  @include main-placeholder;
+  padding: 10px 50px 10px 15px;
+  border: 1px solid $main-border-color;
+  border-radius: 7px;
+  color: $black-color;
+  background: transparent url("../assets/Select-arrow.svg") no-repeat right 20px center;
+  cursor: pointer;
+  transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
+
+  &:hover {
+    color: $main-color;
+    border-color: $sky-color;
+  }
+}
+
+@mixin main-card-title {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@mixin main-card-bill {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin main-card-description {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+@mixin main-card-date {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+@mixin main-header {
+  .app-header {
+    margin-bottom: 45px;
+    background-color: $main-color;
+
+    &__container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 25px 50px;
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    &__title {
+      display: inline;
+      max-width: 80vw;
+      font-family: "Work Sans", sans-serif;
+      font-weight: 300;
+      font-size: 48px;
+      line-height: 56.3px;
+      word-wrap: break-word;
+      color: $white-color;
+    }
+
+    &__list {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    &__item {
+      &:not(:first-child) {
+        margin-left: 25px;
+      }
+    }
+
+    &__crumb {
+      @include main-button;
+      background-color: $white-color;
+      color: $main-color;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: $white-color;
+      }
+    }
+
+    &__crumb--active {
+      background-color: $sky-color;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .app-header {
+      &__container {
+        position: relative;
+        align-items: center;
+        padding: 25px;
+      }
+
+      &__list {
+        display: none;
+
+        &--show {
+          position: absolute;
+          top: 30px;
+          right: 20px;
+          z-index: 1000;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 50px 10px 10px 10px;
+          border-radius: 12px;
+          background-color: $sky-color;
+        }
+      }
+
+      &-burger {
+        position: relative;
+        z-index: 2000;
+        width: 32px;
+        height: 32px;
+        background: transparent url("../assets/burger.svg") no-repeat center center / 100%;
+
+        &--active {
+          background-image: url("../assets/exit.svg");
+        }
+      }
+
+      &__item {
+        &:not(:last-child) {
+          margin-bottom: 10px;
+        }
+
+        &:not(:first-child) {
+          margin-left: 0;
+        }
+      }
+
+      &__crumb {
+        min-width: 110px;
+        padding: 8px 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,253 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.app-info {
+  display: none;
+  min-height: 100vh;
+
+  @include main-header;
+
+  &__container {
+    margin: 0 auto;
+    padding: 0 50px;
+  }
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    @include main-title;
+  }
+
+  &__button {
+    @include main-button;
+    padding-left: 60px;
+    background: $main-color url("../assets/Back-arrow.svg") no-repeat center left 25px;
+  }
+
+  &__bot {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__number {
+    @include main-title;
+    font-weight: 400;
+  }
+
+  &__balance {
+    @include main-text;
+  }
+
+  &__sum {
+    @include main-text;
+    padding-left: 10px;
+    font-weight: 400;
+    word-wrap: break-word;
+  }
+
+  &-chart {
+    min-width: 45%;
+    margin-bottom: 50px;
+    padding: 25px 50px;
+    border-radius: 50px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.3s ease-in-out;
+
+    &:hover {
+      box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    &__title {
+      @include main-text;
+      padding-left: 140px;
+    }
+  }
+
+  &-table {
+    padding: 25px 50px;
+    border-radius: 50px;
+    overflow-x: scroll;
+    background-color: $main-background-color;
+
+    &__title {
+      @include main-text;
+      display: inline-block;
+      margin-right: 50px;
+      margin-bottom: 25px;
+    }
+
+    &__button-wrapper {
+      display: inline-flex;
+    }
+
+    &__button {
+      @include main-button;
+    }
+
+    &__count {
+      @include main-text;
+      padding: 0 50px;
+    }
+
+    &__table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    &__head {
+      background-color: $main-color;
+    }
+
+    &__column-head {
+      @include main-text;
+      padding: 25px 50px;
+      word-wrap: break-word;
+      color: $white-color;
+
+      &:first-child {
+        border-radius: 15px 0 0 15px;
+      }
+
+      &:last-child {
+        border-radius: 0 15px 15px 0;
+      }
+    }
+
+    &__row {
+      border-bottom: 2px solid $table-border-color;
+    }
+
+    &__column {
+      @include main-placeholder;
+      padding: 25px 50px;
+      color: $black-color;
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .app-info {
+    &-table {
+      &__column-head {
+        padding: 15px 25px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .app-bill {
+    &-transfer {
+      min-width: 45%;
+      &__wrapper {
+        flex-direction: column;
+      }
+
+      &__label {
+        margin-bottom: 25px;
+      }
+    }
+
+    &-chart {
+      min-width: 45%;
+    }
+
+    &-table {
+      &__column-head {
+        padding: 15px 25px;
+      }
+
+      &__column {
+        padding: 15px 25px;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-info {
+    &__bot {
+      margin-bottom: 50px;
+    }
+
+    &__number {
+      max-width: 50%;
+      word-wrap: break-word;
+    }
+
+    &-chart {
+      &__title {
+        padding: 0;
+      }
+    }
+
+    & &-table {
+      &__button-wrapper {
+        margin-bottom: 25px;
+      }
+
+      &__column-head {
+        max-width: 100px;
+        padding: 10px 15px;
+        font-size: 16px;
+      }
+
+      &__column {
+        max-width: 100px;
+        padding: 10px 15px;
+        font-size: 12px;
+        word-wrap: break-word;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .app-info {
+    &__container {
+      padding: 0 25px;
+    }
+
+    &__head {
+      flex-direction: column-reverse;
+    }
+
+    &__title {
+      font-size: 24px;
+      word-wrap: break-word;
+    }
+
+    &__button {
+      margin-bottom: 15px;
+    }
+
+    &__bot {
+      flex-direction: column;
+    }
+
+    &__number {
+      font-size: 18px;
+    }
+
+    &__wrapper {
+      flex-direction: column;
+    }
+
+    &-chart {
+      padding: 25px 10px;
+
+      &__title {
+        padding: 0;
+      }
+    }
+
+    &-table {
+      &__button-wrapper {
+        margin-bottom: 25px;
+      }
+    }
+  }
+}

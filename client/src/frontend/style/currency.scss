@@ -1,0 +1,308 @@
+@import "./mixins.scss";
+@import "./variables.scss";
+
+.app-currency {
+  display: none;
+  @include main-header;
+
+  &__container {
+    margin: 0 auto;
+    padding: 0 50px;
+  }
+
+  &__title {
+    @include main-title;
+    margin-bottom: 55px;
+    word-wrap: break-word;
+  }
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__left {
+    min-width: 45%;
+  }
+
+  &__own {
+    margin-bottom: 50px;
+    padding: 50px;
+    border-radius: 50px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  &__subtitle {
+    @include main-text;
+    margin-bottom: 25px;
+    word-wrap: break-word;
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__own-currency {
+    @include main-text;
+    word-wrap: break-word;
+  }
+
+  &__own-amount {
+    @include main-text;
+    font-weight: 400;
+    word-wrap: break-word;
+  }
+
+  &__transaction {
+    padding: 50px;
+    border-radius: 50px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  &__wrapper {
+    display: flex;
+  }
+
+  &__form {
+    margin-right: 25px;
+  }
+
+  &__selectors {
+    @include main-placeholder;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    color: $black-color;
+  }
+
+  &__text {
+    @include main-label;
+    margin-right: 35px;
+  }
+
+  &__select {
+    @include main-select;
+    position: relative;
+    margin-right: 35px;
+    border-color: $main-color;
+    word-wrap: break-word;
+    color: $gray-color;
+  }
+
+  &__select--active {
+    background-image: url("../assets/Select-arrow-active.svg");
+  }
+
+  &__list {
+    position: absolute;
+    top: -682px;
+    left: 0;
+    display: none;
+    min-width: 125px;
+    margin-right: 20px;
+    padding: 10px 0;
+    border-radius: 7px;
+    background-color: $white-color;
+    filter: drop-shadow(0px 5px 20px rgba(0, 0, 0, 0.25));
+  }
+
+  &__list--visible {
+    display: block;
+  }
+
+  &__item {
+    @include main-placeholder;
+    padding: 10px 15px;
+    color: $gray-color;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $sky-color;
+    }
+
+    &:active {
+      color: $white-color;
+      background-color: $active-button-color;
+    }
+
+    &--selected {
+      background: transparent url("../assets/Check.svg") no-repeat center right 10px;
+    }
+  }
+
+  &__label {
+    @include main-label;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  &__input {
+    @include main-input;
+  }
+
+  &__button {
+    @include main-button;
+    word-wrap: break-word;
+  }
+
+  &__right {
+    min-width: 45%;
+    padding: 50px;
+    border-radius: 50px;
+    background-color: $background-color;
+  }
+
+  &__change-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 40px;
+
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
+
+  &__currency-up {
+    background: transparent url("../assets/currency-up.svg") no-repeat right center;
+  }
+
+  &__currency-down {
+    background: transparent url("../assets/currency-down.svg") no-repeat right center;
+  }
+
+  &__change-name {
+    @include main-text;
+    font-weight: 600;
+  }
+
+  &__change-amount {
+    @include main-text;
+    font-weight: 400;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .app-currency {
+    &__left {
+      max-width: 20%;
+    }
+
+    &__wrapper {
+      flex-direction: column;
+    }
+
+    &__form {
+      margin-right: 0;
+      margin-bottom: 25px;
+    }
+
+    &__selectors {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    &__text {
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+
+    &__select {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-currency {
+    &__box {
+      flex-direction: column;
+    }
+
+    &__left {
+      margin-bottom: 50px;
+    }
+
+    &__wrapper {
+      flex-direction: column;
+    }
+
+    &__form {
+      margin-right: 0;
+      margin-bottom: 25px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .app-currency {
+    &__container {
+      padding: 0 25px;
+    }
+
+    &__title {
+      max-width: 80vw;
+    }
+
+    &__box {
+      flex-direction: column;
+    }
+
+    &__left {
+      margin-bottom: 50px;
+    }
+
+    &__own {
+      padding: 25px;
+
+      &-currency {
+        max-width: 60vw;
+      }
+    }
+
+    &__wrapper {
+      flex-direction: column;
+    }
+
+    &__selectors {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__select {
+      max-width: 60vw;
+    }
+
+    &__text {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    &__values {
+      margin-bottom: 15px;
+    }
+
+    &__label {
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    &__input {
+      max-width: 180px;
+      min-width: 80px;
+    }
+
+    &__right {
+      padding: 25px;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import "./mixins.scss";
+@import ".//variables.scss";
+
+.app-atm {
+  display: none;
+  min-height: 100vh;
+
+  @include main-header;
+
+  &__container {
+    margin: 0 auto;
+    padding: 0 50px;
+  }
+
+  &__title {
+    @include main-title;
+  }
+
+  #map {
+    width: 100%;
+    height: 400px;
+    min-height: 700px;
+  }
+}
